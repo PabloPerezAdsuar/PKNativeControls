@@ -233,8 +233,7 @@ typedef CDVPluginResult* (^nativeControlHandler)(NSString*, NSString*, id, UIVie
               CGFloat screenHeight = screenRect.size.height;
             
               UITextView *myTextView = [[UITextView alloc] init];
-              myTextView.height = screenHeight;
-              myTextView.width = screenWidth;
+              [myTextView setFrame:CGRectMake(0,0,screenWidth,screenHeight)];
               myTextView.text = @"some text";
               [self _addNativeControl:myTextView withID:ID];
               return [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
