@@ -422,6 +422,103 @@ typedef CDVPluginResult* (^nativeControlHandler)(NSString*, NSString*, id, UIVie
             },
             
         },
+        @"MessageBox2":
+        @{
+            @"create": NATIVE_CONTROL_HANDLER
+            {
+              UIAlertView *alert = ({
+                UIAlertView *alertView = [[UIAlertView alloc] init];
+                alertView.delegate = self;
+                alertView;
+              });
+              [self _addNativeControl:alert withID:ID];
+              return [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            },
+            @"setText": NATIVE_CONTROL_HANDLER
+            {
+              UIAlertView *alert = (UIAlertView *)nc;
+              alert.message = value;
+              return [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            },
+            @"setTitle": NATIVE_CONTROL_HANDLER
+            {
+              UIAlertView *alert = (UIAlertView *)nc;
+              alert.title = value;
+              return [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            },
+            @"addButtons": NATIVE_CONTROL_HANDLER
+            {
+              UIAlertView *alert = (UIAlertView *)nc;
+              NSArray *buttonValues = value;
+              for (NSString *button in buttonValues) {
+                [alert addButtonWithTitle:button];
+              }
+              return [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            },
+            @"setCancelButton": NATIVE_CONTROL_HANDLER
+            {
+              UIAlertView *alert = (UIAlertView *)nc;
+              [alert setCancelButtonIndex:[value intValue]];
+              return [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            },
+            @"show": NATIVE_CONTROL_HANDLER
+            {
+              UIAlertView *alert = (UIAlertView *)nc;
+              [alert show];
+              return [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            },
+            @"hide": NATIVE_CONTROL_HANDLER
+            {
+              UIAlertView *alert = (UIAlertView *)nc;
+              [alert dismissWithClickedButtonIndex:alert.cancelButtonIndex animated:YES];
+              return [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            },
+            @"setType": NATIVE_CONTROL_HANDLER
+            {
+              UIAlertView *alert = (UIAlertView *)nc;
+              NSString *style = value;
+              if ([style isEqualToString:@"default"])
+              {
+                alert.alertViewStyle = UIAlertViewStyleDefault;
+              }
+              if ([style isEqualToString:@"input"])
+              {
+                alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+              }
+              if ([style isEqualToString:@"secureInput"])
+              {
+                alert.alertViewStyle = UIAlertViewStyleSecureTextInput;
+              }
+              if ([style isEqualToString:@"userNameAndPassword"])
+              {
+                alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
+              }
+              return [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            },
+            @"getInputText": NATIVE_CONTROL_HANDLER
+            {
+              UIAlertView *alert = (UIAlertView *)nc;
+              return [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[alert textFieldAtIndex:0].text];
+            },
+            @"setInputText": NATIVE_CONTROL_HANDLER
+            {
+              UIAlertView *alert = (UIAlertView *)nc;
+              [alert textFieldAtIndex:0].text = value;
+              return [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            },
+            @"getPasswordText": NATIVE_CONTROL_HANDLER
+            {
+              UIAlertView *alert = (UIAlertView *)nc;
+              return [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[alert textFieldAtIndex:1].text];
+            },
+            @"setPasswordText": NATIVE_CONTROL_HANDLER
+            {
+              UIAlertView *alert = (UIAlertView *)nc;
+              [alert textFieldAtIndex:1].text = value;
+              return [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            },
+            
+        },
         @"ActionSheet":
         @{
             @"create": NATIVE_CONTROL_HANDLER
