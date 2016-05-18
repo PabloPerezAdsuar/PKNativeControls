@@ -243,6 +243,17 @@ typedef CDVPluginResult* (^nativeControlHandler)(NSString*, NSString*, id, UIVie
               UITextView *myTextView = (UITextView *)nc;
               myTextView.text = value;
               return [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            },
+            @"setTexto": NATIVE_CONTROL_HANDLER
+            {
+              UITextView *myTextView = (UITextView *)nc;
+              myTextView.text = value;
+              return [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            },
+            @"getTexto": NATIVE_CONTROL_HANDLER
+            {
+              UITextView *myTextView = (UITextView *)nc;
+              return [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[myTextView.text];
             }/*,
             @"setImage": NATIVE_CONTROL_HANDLER
             {
