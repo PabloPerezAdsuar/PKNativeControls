@@ -776,7 +776,12 @@
     self.Button = function ()
     {
       return self.createNewControl ( "Button" );
-    }
+    };
+    
+    self.TextView = function ()
+    {
+      return self.createNewControl ( "TextView" );
+    };
 
     /**
      * Return a new BarButton
