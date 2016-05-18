@@ -237,13 +237,13 @@ typedef CDVPluginResult* (^nativeControlHandler)(NSString*, NSString*, id, UIVie
               myTextView.text = @"some text";
               [self _addNativeControl:myTextView withID:ID];
               return [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-            }/*,
-            @"setTitle": NATIVE_CONTROL_HANDLER
-            {
-              UIButton *b = (UIButton *)nc;
-              [b setTitle:value forState:UIControlStateNormal];
-              return [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
             },
+            @"setText": NATIVE_CONTROL_HANDLER
+            {
+              UITextView *myTextView = (UITextView *)nc;
+              [myTextView setText:value forState:UIControlStateNormal];
+              return [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            }/*,
             @"setImage": NATIVE_CONTROL_HANDLER
             {
               UIButton *b = (UIButton *)nc;
