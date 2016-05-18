@@ -838,6 +838,16 @@
     {
       return self.createNewControl ( "MessageBox" );
     };
+    
+    /**
+     * Return a new Message Box
+     * @returns {NativeControl}
+     * @constructor
+     */
+    self.MessageBox2 = function ()
+    {
+      return self.createNewControl ( "MessageBox2" );
+    };
 
     /**
      * Return a new Navigation Item
