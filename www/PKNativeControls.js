@@ -783,22 +783,6 @@
       return self.createNewControl ( "TextView" );
     };
     
-    /**
-     * Text of control (generally only useful for message boxes or other controls that have Title & Text
-     * @type {string}
-     * @private
-     */
-    self._text = "";
-    self.getTexto = function ()
-    {
-      return self._text;
-    };
-    self.setTexto = function ( theTexto )
-    {
-      self._text = theTexto;
-      return self._owner.queueExec ( self, "setTexto", theTexto, self._handleSuccess, self._handleError  );
-    };
-    Object.defineProperty ( self, "text", { get: self.getTexto, set: self.setTexto, configurable: true } );
 
     /**
      * Return a new BarButton
